@@ -12,7 +12,7 @@ function getDataFromApi(callback, wordToCheck){
             //the call back function is called 
             callback(JSON.parse(this.responseText));
         } else if (this.readyState == 4 && this.status == 404){
-            console.log('This is not a word')
+            notAWord();
         }
     };
 
@@ -40,7 +40,10 @@ function collectWord() {
 
 function printDataConsole(data) {
     let answerDiv = document.getElementById('answerBox');
-    console.log(data);
     answerDiv.innerText = `The word you entered was ${data[0].word}. This scores * points.`
 };
 
+function notAWord() {
+    let answerDiv = document.getElementById('answerBox');
+    answerDiv.innerText = `The word you entered does not score as it does not exist in the english dictionary`
+};
